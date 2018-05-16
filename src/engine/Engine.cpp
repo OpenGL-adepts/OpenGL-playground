@@ -81,10 +81,11 @@ void Engine::InitRandomNumbersGenerator() {
 }
 
 void Engine::InitGUI() {
+	// Delegate responsibility to gui.cpp implementation
 }
 
 void Engine::UpdateGUI() {
-	// TODO Put ImGui code here
+	// Delegate responsibility to gui.cpp implementation
 }
 
 void Engine::UpdateScene(float& color) {

@@ -23,7 +23,6 @@
 
 // TODO Add exception handling (throw, try, catch)
 // TODO Move methods definitions to .cpp file!
-
 class Engine {
 private:
 	GLFWwindow* window;
@@ -37,8 +36,6 @@ public:
 	static const unsigned int OPENGL_MINOR_VERSION = 0;
 	static const bool RESIZABLE_WINDOW = GL_TRUE;
 
-	
-	
 	Engine();
 	~Engine();
 	
