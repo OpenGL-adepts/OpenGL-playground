@@ -32,7 +32,7 @@ file(GLOB LIB_SOURCES lib/glad/src/glad.c
 					  lib/imgui/*.cpp)
 
 # Header files
-file(GLOB PROJECT_HEADERS src/engine/*.h)
+file(GLOB PROJECT_HEADERS src/engine/*.hpp)
 
 # Source files
 file(GLOB PROJECT_SOURCES src/engine/*.cpp)
