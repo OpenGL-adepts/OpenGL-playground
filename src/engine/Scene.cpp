@@ -8,6 +8,7 @@
 bool Scene::Load(const std::string& _path)
 {
 	std::ifstream file(_path);
+	m_objects.clear();
 
 	try
 	{
@@ -19,8 +20,12 @@ bool Scene::Load(const std::string& _path)
 
 		auto root = std::filesystem::path(_path).parent_path();
 
-		m_modelPath = (root / json.at("model").get<std::string>()).string();
-		m_model.loadModel(m_modelPath);
+		for(auto& elem : json.at("objects"))
+		{
+			SceneObject tmpObj;
+			tmpObj.Load((root / elem.at("model").get<std::string>()).make_preferred().string());
+			m_objects.push_back(std::move(tmpObj));
+		}
 	}
 	catch(...)
 	{
@@ -34,7 +39,14 @@ bool Scene::Load(const std::string& _path)
 bool Scene::Save(const std::string& _path)
 {
 	nlohmann::json json;
-	json["model"] = std::filesystem::relative(m_modelPath, std::filesystem::path(_path).parent_path()).string();
+	auto& objArr = json["objects"];
+
+	for(auto& obj : m_objects)
+	{
+		nlohmann::json tmp;
+		tmp["model"] = std::filesystem::relative(obj.GetModelPath(), std::filesystem::path(_path).parent_path()).string();
+		objArr.push_back(tmp);
+	}
 
 	std::ofstream file(_path);
 	file << json;
@@ -44,5 +56,6 @@ bool Scene::Save(const std::string& _path)
 
 void Scene::Draw()
 {
-	m_model.Draw();
+	for(auto& obj : m_objects)
+		obj.Draw();
 }

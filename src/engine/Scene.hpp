@@ -1,6 +1,7 @@
 #pragma once
-#include "model.hpp"
+#include "SceneObject.hpp"
 #include <string>
+#include <vector>
 
 
 class Scene
@@ -12,7 +13,6 @@ public:
 	void Draw();
 
 protected:
-	// One model for now
-	Model m_model;
-	std::string m_modelPath;
+	std::vector<SceneObject> m_objects;
+
 };
