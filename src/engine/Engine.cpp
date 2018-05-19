@@ -106,7 +106,7 @@ void Engine::Run() {
 	float color = 0.0;
 
 	Model model;
-	model.loadModel("C:/Users/karols/Desktop/OpenGL-playground/resources/objects/sheep.obj");
+	model.loadModel("C:/stuff/MSI/OpenGL-playground/resources/objects/sheep.obj");
 
 
 	while (!glfwWindowShouldClose(window))
@@ -122,7 +122,7 @@ void Engine::Run() {
 
 		model.Draw();
 
-		ImGui::Text("Hello, word!");	
+		ImGui::Text("Hello, word!");
 		ImGui::Render();
 
 		// Finally apply screen updates

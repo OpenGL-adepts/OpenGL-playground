@@ -27,7 +27,8 @@ include_directories(src/engine/
                     lib/glfw/include/
                     lib/glm/
                     lib/stb/
-					lib/imgui/)
+					lib/imgui/
+					lib/json/)
 
 file(GLOB LIB_SOURCES lib/glad/src/glad.c
 					  lib/imgui/*.cpp)
