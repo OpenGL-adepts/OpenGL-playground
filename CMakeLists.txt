@@ -12,9 +12,9 @@ option(ASSIMP_BUILD_TESTS OFF)
 add_subdirectory(lib/assimp)
 
 if(MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /std:c++17")
 else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic -std=c++11")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic -std=c++17")
     if(NOT WIN32)
         set(GLAD_LIBRARIES dl)
     endif()
@@ -27,7 +27,8 @@ include_directories(src/engine/
                     lib/glfw/include/
                     lib/glm/
                     lib/stb/
-					lib/imgui/)
+					lib/imgui/
+					lib/json/)
 
 file(GLOB LIB_SOURCES lib/glad/src/glad.c
 					  lib/imgui/*.cpp)

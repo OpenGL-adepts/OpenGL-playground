@@ -22,6 +22,7 @@
 #include <ctime>
 
 #include "../model/model.hpp"
+#include "Scene.hpp"
 
 
 // TODO Add exception handling (throw, try, catch)

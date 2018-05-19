@@ -105,9 +105,10 @@ void Engine::Run() {
 	// TODO Delete in the future
 	float color = 0.0;
 
-	Model model;
-	model.loadModel("C:/Users/karols/Desktop/OpenGL-playground/resources/objects/sheep.obj");
-
+	Scene scene;
+	scene.Load("C:/stuff/MSI/OpenGL-playground/resources/scene.json");
+	//scene.Save("C:/stuff/MSI/OpenGL-playground/sceneExperiment.json");
+	//model.loadModel("C:/stuff/MSI/OpenGL-playground/resources/objects/sheep.obj");
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -120,9 +121,9 @@ void Engine::Run() {
 		UpdateGUI();
 		UpdateScene(color);
 
-		model.Draw();
+		scene.Draw();
 
-		ImGui::Text("Hello, word!");	
+		ImGui::Text("Hello, word!");
 		ImGui::Render();
 
 		// Finally apply screen updates
