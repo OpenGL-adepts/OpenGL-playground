@@ -107,6 +107,7 @@ void Engine::Run() {
 
 	Scene scene;
 	scene.Load("C:/stuff/MSI/OpenGL-playground/resources/scene.json");
+	//scene.Save("C:/stuff/MSI/OpenGL-playground/sceneExperiment.json");
 	//model.loadModel("C:/stuff/MSI/OpenGL-playground/resources/objects/sheep.obj");
 
 	while (!glfwWindowShouldClose(window))

@@ -2,6 +2,7 @@
 #include <json.hpp>
 #include <string>
 #include <fstream>
+#include <filesystem>
 
 
 bool Scene::Load(const std::string& _path)
@@ -16,7 +17,9 @@ bool Scene::Load(const std::string& _path)
 		if(!file)
 			return false;
 
-		m_modelPath = json.at("model").get<std::string>();
+		auto root = std::filesystem::path(_path).parent_path();
+
+		m_modelPath = (root / json.at("model").get<std::string>()).string();
 		m_model.loadModel(m_modelPath);
 	}
 	catch(...)
@@ -31,7 +34,7 @@ bool Scene::Load(const std::string& _path)
 bool Scene::Save(const std::string& _path)
 {
 	nlohmann::json json;
-	json["model"] = m_modelPath;
+	json["model"] = std::filesystem::relative(m_modelPath, std::filesystem::path(_path).parent_path()).string();
 
 	std::ofstream file(_path);
 	file << json;
