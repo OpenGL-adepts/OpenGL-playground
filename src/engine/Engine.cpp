@@ -70,6 +70,13 @@ void Engine::InitWindow() {
 		exit(EXIT_FAILURE);
 	}
 	glfwMakeContextCurrent(window);
+	
+	// Setup Dear ImGui binding
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGui_ImplGlfwGL3_Init(window, true);
+
+	glfwSwapInterval(1); // Enable vsync*/
 
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	gladLoadGL();
@@ -88,6 +95,7 @@ void Engine::UpdateGUI() {
 	// Delegate responsibility to gui.cpp implementation
 }
 
+
 void Engine::UpdateScene(float& color) {
 	color += 0.0001;
 	glClearColor(0.0, color, 0.3, 1.0);
@@ -97,13 +105,25 @@ void Engine::Run() {
 	// TODO Delete in the future
 	float color = 0.0;
 
+	Model model;
+	model.loadModel("C:/Users/karols/Desktop/OpenGL-playground/resources/objects/sheep.obj");
+
+
 	while (!glfwWindowShouldClose(window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		glfwPollEvents();
+		ImGui_ImplGlfwGL3_NewFrame();
+
 		// Rendering examples
 		UpdateGUI();
 		UpdateScene(color);
+
+		model.Draw();
+
+		ImGui::Text("Hello, word!");	
+		ImGui::Render();
 
 		// Finally apply screen updates
 		glfwSwapBuffers(window);
@@ -111,6 +131,10 @@ void Engine::Run() {
 		// Handle input/window movement
 		glfwPollEvents();
 	}
+	
+	// Cleanup
+	glfwDestroyWindow(window);
+	glfwTerminate();
 }
 
 ////////////

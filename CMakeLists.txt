@@ -21,6 +21,7 @@ else()
 endif()
 
 include_directories(src/engine/
+					src/model/
                     lib/assimp/include/
                     lib/glad/include/
                     lib/glfw/include/
@@ -32,10 +33,12 @@ file(GLOB LIB_SOURCES lib/glad/src/glad.c
 					  lib/imgui/*.cpp)
 
 # Header files
-file(GLOB PROJECT_HEADERS src/engine/*.hpp)
+file(GLOB PROJECT_HEADERS src/engine/*.hpp 
+						  src/model/*.hpp)
 
 # Source files
-file(GLOB PROJECT_SOURCES src/engine/*.cpp)
+file(GLOB PROJECT_SOURCES src/engine/*.cpp 
+                          src/model/*.cpp)
 
 # TODO Here will go shaders e.g.
 #file(GLOB PROJECT_SHADERS resources/shaders/*.glsl
@@ -56,8 +59,8 @@ source_group("LIB" FILES ${LIB_SOURCES})
 add_definitions(-DGLFW_INCLUDE_NONE
                 -DPROJECT_SOURCE_DIR=\"${PROJECT_SOURCE_DIR}\")
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} ${PROJECT_HEADERS}
-                               ${PROJECT_SHADERS} ${PROJECT_CONFIGS}
-                               ${LIB_SOURCES})
+                               ${PROJECT_SHADERS} ${PROJECT_CONFIGS} 
+							   ${LIB_SOURCES})
 target_link_libraries(${PROJECT_NAME} assimp glfw
                       ${GLFW_LIBRARIES} ${GLAD_LIBRARIES})
 set_target_properties(${PROJECT_NAME} PROPERTIES
