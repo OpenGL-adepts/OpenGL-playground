@@ -21,6 +21,9 @@
 #include <random>
 #include <ctime>
 
+#include "../model/model.hpp"
+
+
 // TODO Add exception handling (throw, try, catch)
 // TODO Move methods definitions to .cpp file!
 class Engine {
