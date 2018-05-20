@@ -1,10 +1,5 @@
 #include "Gui.hpp"
 
-Gui::Gui() {
-}
-
-Gui::~Gui() {
-}
 
 void Gui::initGui(GLFWwindow* window) {
 
@@ -20,6 +15,7 @@ void Gui::initGui(GLFWwindow* window) {
 	createImGuiMenu();
 
 }
+
 
 void Gui::createImGuiMenu() {
 	ImGui_ImplGlfwGL3_NewFrame();

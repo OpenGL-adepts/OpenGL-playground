@@ -255,7 +255,7 @@ void Engine::Run() {
 
 	while (!glfwWindowShouldClose(window))
 	{
-		gui->initGui(window);
+		gui.initGui(window);
 
 		//------------------------
 		// Geometry Pass rendering

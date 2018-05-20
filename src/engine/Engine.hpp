@@ -35,7 +35,7 @@
 class Engine {
 private:
 	GLFWwindow* window;
-	Gui *gui;
+	Gui gui;
 	// TODO Declare arrays for storing objects that should be rendered in the scene
 	// Any model, texture, shader loading put into a separate class which appends its objects 
 	// to aforementioned array/vector
@@ -47,6 +47,7 @@ public:
 	static const bool RESIZABLE_WINDOW = GL_TRUE;
 
 	Engine();
+	Engine(const Engine&) = delete;
 	~Engine();
 	
 	void InitCallbacks();
