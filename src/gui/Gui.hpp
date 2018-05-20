@@ -5,6 +5,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <imgui.h>
 #include <imgui_impl_glfw_gl3.h>
+#include <filesystem>
 
 
 class Gui
@@ -15,5 +16,10 @@ public:
 
 private:
 	void createImGuiMenu();
+
+	std::filesystem::path openModelDialog();
+
+protected:
+	GLFWwindow* m_window;
 
 };
