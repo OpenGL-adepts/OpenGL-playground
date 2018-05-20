@@ -2,7 +2,7 @@
 
 int main(int argc, char* argv[])
 {
-	Engine engine = Engine();
+	Engine engine;
 	engine.Run();
 	return 0;
 }

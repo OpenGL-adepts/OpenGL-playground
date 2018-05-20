@@ -15,8 +15,8 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-#include "model.hpp"
-#include "mesh.hpp"
+#include "Model.hpp"
+#include "Mesh.hpp"
 
 Model::Model()
 {

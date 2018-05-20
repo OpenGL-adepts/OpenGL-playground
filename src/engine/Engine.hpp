@@ -22,7 +22,12 @@
 #include <ctime>
 
 #include "../model/model.hpp"
-#include "Scene.hpp"
+#include "../scene/Scene.hpp"
+#include "../gui/Gui.hpp"
+#include "../processing/shader.hpp"
+#include "../processing/texture.hpp"
+#include "../processing/shape.hpp"
+#include "../processing/light.hpp"
 
 
 // TODO Add exception handling (throw, try, catch)
@@ -30,6 +35,7 @@
 class Engine {
 private:
 	GLFWwindow* window;
+	Gui gui;
 	// TODO Declare arrays for storing objects that should be rendered in the scene
 	// Any model, texture, shader loading put into a separate class which appends its objects 
 	// to aforementioned array/vector
@@ -41,18 +47,18 @@ public:
 	static const bool RESIZABLE_WINDOW = GL_TRUE;
 
 	Engine();
+	Engine(const Engine&) = delete;
 	~Engine();
 	
 	void InitCallbacks();
 	void InitWindow();
-	void InitRandomNumbersGenerator();
-	void InitGUI();
-
-	void UpdateGUI();
-	void UpdateScene(float& color);
 	void Run();
 
 	static void ErrorCallback(int error, const char* description);
 	static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 	static void CursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
+	static void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
+	static void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+
+	static void loadShaders();
 };

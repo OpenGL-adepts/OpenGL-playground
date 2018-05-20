@@ -15,7 +15,7 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-#include "mesh.hpp"
+#include "Mesh.hpp"
 
 
 class Model

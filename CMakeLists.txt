@@ -22,6 +22,10 @@ endif()
 
 include_directories(src/engine/
 					src/model/
+					src/scene/
+					src/gui/
+					src/camera
+					src/processing/
                     lib/assimp/include/
                     lib/glad/include/
                     lib/glfw/include/
@@ -35,16 +39,32 @@ file(GLOB LIB_SOURCES lib/glad/src/glad.c
 
 # Header files
 file(GLOB PROJECT_HEADERS src/engine/*.hpp 
-						  src/model/*.hpp)
+						  src/model/*.hpp
+						  src/scene/*.hpp
+						  src/gui/*.hpp
+						  src/processing/*.hpp
+						  src/camera/.*hpp)
 
 # Source files
-file(GLOB PROJECT_SOURCES src/engine/*.cpp 
-                          src/model/*.cpp)
+file(GLOB PROJECT_SOURCES src/camera/*.cpp
+                          src/engine/*.cpp
+                          src/model/*.cpp
+                          src/processing/*.cpp
+                          src/scene/*.cpp
+						  src/gui/*.cpp)
 
-# TODO Here will go shaders e.g.
-#file(GLOB PROJECT_SHADERS resources/shaders/*.glsl
-#                          resources/shaders/*.frag
-#                          resources/shaders/*.vert)
+file(GLOB PROJECT_SHADERS resources/shaders/*.glsl
+                          resources/shaders/*.frag
+                          resources/shaders/*.vert
+                          resources/shaders/lighting/*.glsl
+                          resources/shaders/lighting/*.frag
+                          resources/shaders/lighting/*.vert
+                          resources/shaders/lighting/ibl/*.glsl
+                          resources/shaders/lighting/ibl/*.frag
+                          resources/shaders/lighting/ibl/*.vert
+                          resources/shaders/postprocess/*.glsl
+                          resources/shaders/postprocess/*.frag
+                          resources/shaders/postprocess/*.vert)
 
 file(GLOB PROJECT_CONFIGS CMakeLists.txt
                           README.md)
@@ -53,7 +73,7 @@ file(GLOB PROJECT_CONFIGS CMakeLists.txt
 #                         .gitmodules)
 
 source_group("Headers" FILES ${PROJECT_HEADERS})
-#source_group("Shaders" FILES ${PROJECT_SHADERS})
+source_group("Shaders" FILES ${PROJECT_SHADERS})
 source_group("Sources" FILES ${PROJECT_SOURCES})
 source_group("LIB" FILES ${LIB_SOURCES})
 
