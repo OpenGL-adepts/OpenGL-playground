@@ -46,12 +46,12 @@ file(GLOB PROJECT_HEADERS src/engine/*.hpp
 						  src/camera/.*hpp)
 
 # Source files
-file(GLOB PROJECT_SOURCES src/engine/*.cpp 
+file(GLOB PROJECT_SOURCES src/camera/*.cpp
+                          src/engine/*.cpp
                           src/model/*.cpp
-						  src/scene/*.cpp
-						  src/gui/*.cpp
-						  src/processing/*.cpp
-						  src/camera/*.cpp)
+                          src/processing/*.cpp
+                          src/scene/*.cpp
+						  src/gui/*.cpp)
 
 file(GLOB PROJECT_SHADERS resources/shaders/*.glsl
                           resources/shaders/*.frag
