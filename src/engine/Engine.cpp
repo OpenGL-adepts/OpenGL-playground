@@ -156,23 +156,25 @@ void Engine::Run() {
 	//----------
 	// Shader(s)
 	//----------
-	gBufferShader.setShader("C:/Users/karols/Desktop/GLEngine/resources/shaders/gBuffer.vert", "C:/Users/karols/Desktop/GLEngine/resources/shaders/gBuffer.frag");
-	latlongToCubeShader.setShader("C:/Users/karols/Desktop/GLEngine/resources/shaders/latlongToCube.vert", "C:/Users/karols/Desktop/GLEngine/resources/shaders/latlongToCube.frag");
+#define PROJ_ROOT "C:/stuff/MSI/OpenGL-playground/"
 
-	simpleShader.setShader("C:/Users/karols/Desktop/GLEngine/resources/shaders/lighting/simple.vert", "C:/Users/karols/Desktop/GLEngine/resources/shaders/lighting/simple.frag");
+	gBufferShader.setShader(PROJ_ROOT "resources/shaders/gBuffer.vert", PROJ_ROOT "resources/shaders/gBuffer.frag");
+	latlongToCubeShader.setShader(PROJ_ROOT "resources/shaders/latlongToCube.vert", PROJ_ROOT "resources/shaders/latlongToCube.frag");
 
-	lightingBRDFShader.setShader("C:/Users/karols/Desktop/GLEngine/resources/shaders/lighting/lightingBRDF.vert", "C:/Users/karols/Desktop/GLEngine/resources/shaders/lighting/lightingBRDF.frag");
-	irradianceIBLShader.setShader("C:/Users/karols/Desktop/GLEngine/resources/shaders/lighting/irradianceIBL.vert", "C:/Users/karols/Desktop/GLEngine/resources/shaders/lighting/irradianceIBL.frag");
-	prefilterIBLShader.setShader("C:/Users/karols/Desktop/GLEngine/resources/shaders/lighting/prefilterIBL.vert", "C:/Users/karols/Desktop/GLEngine/resources/shaders/lighting/prefilterIBL.frag");
-	integrateIBLShader.setShader("C:/Users/karols/Desktop/GLEngine/resources/shaders/lighting/integrateIBL.vert", "C:/Users/karols/Desktop/GLEngine/resources/shaders/lighting/integrateIBL.frag");
-	firstpassPPShader.setShader("C:/Users/karols/Desktop/GLEngine/resources/shaders/postprocess/postprocess.vert", "C:/Users/karols/Desktop/GLEngine/resources/shaders/postprocess/firstpass.frag");
+	simpleShader.setShader(PROJ_ROOT "resources/shaders/lighting/simple.vert", PROJ_ROOT "resources/shaders/lighting/simple.frag");
+
+	lightingBRDFShader.setShader( PROJ_ROOT "resources/shaders/lighting/lightingBRDF.vert",   PROJ_ROOT "resources/shaders/lighting/lightingBRDF.frag");
+	irradianceIBLShader.setShader(PROJ_ROOT "resources/shaders/lighting/irradianceIBL.vert",  PROJ_ROOT "resources/shaders/lighting/irradianceIBL.frag");
+	prefilterIBLShader.setShader( PROJ_ROOT "resources/shaders/lighting/prefilterIBL.vert",   PROJ_ROOT "resources/shaders/lighting/prefilterIBL.frag");
+	integrateIBLShader.setShader( PROJ_ROOT "resources/shaders/lighting/integrateIBL.vert",   PROJ_ROOT "resources/shaders/lighting/integrateIBL.frag");
+	firstpassPPShader.setShader(  PROJ_ROOT "resources/shaders/postprocess/postprocess.vert", PROJ_ROOT "resources/shaders/postprocess/firstpass.frag");
 
 
 	//-----------
 	// Textures(s)
 	//-----------
 
-	envMapHDR.setTextureHDR("C:/Users/karols/Desktop/GLEngine/resources/textures/hdr/popcorn.hdr", "space", true);
+	envMapHDR.setTextureHDR(PROJ_ROOT "resources/textures/hdr/popcorn.hdr", "space", true);
 
 	envMapCube.setTextureCube(512, GL_RGB, GL_RGB16F, GL_FLOAT, GL_LINEAR_MIPMAP_LINEAR);
 	envMapIrradiance.setTextureCube(32, GL_RGB, GL_RGB16F, GL_FLOAT, GL_LINEAR);
@@ -184,9 +186,9 @@ void Engine::Run() {
 	// TODO: create a button in imGui to save the scene
 	Model m;
 	//Scene scene;
-	//scene.Load("C:/Users/karols/Desktop/OpenGL-playground/resources/scene.json");
-	//scene.Save("C:/stuff/MSI/OpenGL-playground/sceneExperiment.json");
-	m.loadModel("C:/Users/karols/Desktop/OpenGL-playground/resources/models/sphere/sphere.obj");
+	//scene.Load(PROJ_ROOT "resources/scene.json");
+	//scene.Save(PROJ_ROOT "sceneExperiment.json");
+	m.loadModel(PROJ_ROOT "resources/models/sphere/sphere.obj");
 
 
 	//---------------
@@ -260,6 +262,7 @@ void Engine::Run() {
 		//------------------------
 		glBindFramebuffer(GL_FRAMEBUFFER, gBuffer);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glfwPollEvents();
 
 		// Camera setting
 		glm::mat4 projection = glm::perspective(camera.cameraFOV, (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
