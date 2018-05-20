@@ -13,11 +13,10 @@ class Gui
 public:
 	void initGui(GLFWwindow* window);
 	void updateGui();
+	std::filesystem::path openModelDialog();
 
 private:
 	void createImGuiMenu();
-
-	std::filesystem::path openModelDialog();
 
 protected:
 	GLFWwindow* m_window;

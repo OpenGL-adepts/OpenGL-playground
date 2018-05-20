@@ -21,10 +21,8 @@
 class Model
 {
 public:
-	Model();
-	~Model();
-
 	void loadModel(std::string path);
+	void clear();
 	void Draw();
 
 private:

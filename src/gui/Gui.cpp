@@ -25,18 +25,6 @@ void Gui::initGui(GLFWwindow* window)
 }
 
 
-void Gui::createImGuiMenu() {
-	ImGui_ImplGlfwGL3_NewFrame();
-	ImGui::Text("Hello, word!");
-
-	if(ImGui::Button("Load model"))
-	{
-		auto path = openModelDialog();
-		std::cout << path.u8string() << std::endl;
-	}
-}
-
-
 std::filesystem::path Gui::openModelDialog()
 {
 	OPENFILENAMEW ofnw;
@@ -74,4 +62,11 @@ std::filesystem::path Gui::openModelDialog()
 		return buffer;
 
 	return {};
+}
+
+
+void Gui::createImGuiMenu()
+{
+	ImGui_ImplGlfwGL3_NewFrame();
+	ImGui::Text("Hello, word!");
 }

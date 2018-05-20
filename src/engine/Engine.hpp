@@ -36,6 +36,7 @@ class Engine {
 private:
 	GLFWwindow* window;
 	Gui gui;
+	Scene scene;
 	// TODO Declare arrays for storing objects that should be rendered in the scene
 	// Any model, texture, shader loading put into a separate class which appends its objects 
 	// to aforementioned array/vector

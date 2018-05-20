@@ -257,6 +257,14 @@ void Engine::Run() {
 	{
 		gui.initGui(window);
 
+		if(ImGui::Button("Load model"))
+		{
+			auto path = gui.openModelDialog();
+
+			if(!path.empty())
+				m.loadModel(path.u8string());
+		}
+
 		//------------------------
 		// Geometry Pass rendering
 		//------------------------
@@ -288,6 +296,7 @@ void Engine::Run() {
 		glUniformMatrix4fv(glGetUniformLocation(gBufferShader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
 		m.Draw();
+		scene.Draw();
 
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 

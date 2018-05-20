@@ -18,18 +18,10 @@
 #include "Model.hpp"
 #include "Mesh.hpp"
 
-Model::Model()
-{
-
-}
-
-Model::~Model()
-{
-
-}
 
 void Model::loadModel(std::string path)
 {
+	clear();
 	Assimp::Importer importer;
 	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
 
@@ -43,6 +35,14 @@ void Model::loadModel(std::string path)
 	this->directory = path.substr(0, path.find_last_of('/'));
 	this->processNode(scene->mRootNode, scene);
 }
+
+
+void Model::clear()
+{
+	meshes.clear();
+	directory.clear();
+}
+
 
 void Model::Draw()
 {
