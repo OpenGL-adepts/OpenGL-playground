@@ -3,12 +3,15 @@
 #include <string>
 #include <fstream>
 #include <filesystem>
+#include <glm/gtc/type_ptr.hpp>
 
 
 bool Scene::Load(const std::string& _path)
 {
 	std::ifstream file(_path);
 	m_objects.clear();
+
+	int debugOffset = 0;
 
 	try
 	{
@@ -23,6 +26,11 @@ bool Scene::Load(const std::string& _path)
 		for(auto& elem : json.at("objects"))
 		{
 			SceneObject tmpObj;
+
+			//TODO: gdzies to walnac indziej:
+			tmpObj.setPosition(glm::vec3(debugOffset++ * 1.f, 0, 0));
+			/////
+
 			tmpObj.Load((root / elem.at("model").get<std::string>()).make_preferred().string());
 			m_objects.push_back(std::move(tmpObj));
 		}
@@ -54,8 +62,17 @@ bool Scene::Save(const std::string& _path)
 }
 
 
-void Scene::Draw()
+void Scene::Draw(Shader& _bufferShader, glm::mat4 _projViewMat)
 {
-	for(auto& obj : m_objects)
+	for (auto& obj : m_objects)
+	{
+		auto model = obj.getModelMatrix();
+		auto projViewModel = _projViewMat * model;
+
+		glUniformMatrix4fv(glGetUniformLocation(_bufferShader.Program, "projViewModel"), 1, GL_FALSE, glm::value_ptr(projViewModel));
+		glUniformMatrix4fv(glGetUniformLocation(_bufferShader.Program, "prevProjViewModel"), 1, GL_FALSE, glm::value_ptr(projViewModel)); //TODO: prevProjViewModel, ale nie wiem po co to by³o :/
+		glUniformMatrix4fv(glGetUniformLocation(_bufferShader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+
 		obj.Draw();
+	}
 }

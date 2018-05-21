@@ -1,0 +1,7 @@
+{
+  "objects": [
+    { "model": "C:/Users/Kasia/OpenGL-playground/resources/models/sheep.obj" },
+    { "model": "C:/Users/Kasia/OpenGL-playground/resources/models/teapot/teapot.obj" },
+    { "model": "C:/Users/Kasia/OpenGL-playground/resources/models/mitsuba/mitsuba.obj" }
+  ]
+}

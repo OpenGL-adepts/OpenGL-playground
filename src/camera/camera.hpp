@@ -12,7 +12,7 @@
 
 const GLfloat defaultCameraYaw = -90.0f;
 const GLfloat defaultCameraPitch = 0.0f;
-const GLfloat defaultCameraSpeed = 4.0f;
+const GLfloat defaultCameraSpeed = 1.0f;
 const GLfloat defaultCameraSensitivity = 0.10f;
 const GLfloat defaultCameraFOV = glm::radians(45.0f);
 
